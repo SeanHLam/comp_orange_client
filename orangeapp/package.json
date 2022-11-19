@@ -16,9 +16,13 @@
   "devDependencies": {
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3"
+<<<<<<< HEAD
   },
   "main": "index.js",
   "author": "",
   "license": "ISC",
   "description": ""
+=======
+  }
+>>>>>>> main
 }
