@@ -17,7 +17,7 @@ padding: 5%;
 // Reusuable Wrapper for all the pages
 export const Wrapper = styled.div`
 width:80%;
-height:100%;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:flex-start;

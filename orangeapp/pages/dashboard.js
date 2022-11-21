@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import HeaderComp from "./comps/header";
 import PostComp from "./comps/post";
 import PostDashboardComp from "./comps/spritzboard";
+import FollowBoxComp from "./comps/followbox";
 
  
 // Basic dashboard structure - to be updated
@@ -22,17 +23,29 @@ export default function Home() {
             <HeaderComp></HeaderComp>
          </FlexBox>
        </Grid>
-       <Grid item xs={4}>
 {/* Text area where users can post their tweets/spritz*/}
-      <PostComp />
+       <Grid item xs={4}>
+            <Grid item xs={12}>
+                <PostComp />
+            </Grid>
+            <Grid item xs={12}
+                style={{
+                    marginTop: '1em'
+                }}
+            >
+                <FollowBoxComp />
+            </Grid>
+            <Grid item xs={12}
+                style={{
+                    marginTop: '1em'
+                }}
+            >
+                <FollowBoxComp title="Following" />
+            </Grid>
        </Grid>
        <Grid item xs={8}>
 {/* Area where users can see their posted tweets/spritz*/}
         <PostDashboardComp />
-       </Grid>
-       <Grid item xs={12}>
-{/* Placeholder Footer */}
-         <FlexBox>Footer</FlexBox>
        </Grid>
      </Grid>
    </Box>
