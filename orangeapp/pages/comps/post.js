@@ -15,6 +15,7 @@ export default function PostComp() {
             Sprit something
         </h2>
         <textarea
+            placeholder='Say something here'
             style={{
                 minHeight: 90,
                 width: '90%',
