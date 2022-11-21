@@ -11,7 +11,7 @@ background-color:${props=>props.color || "white"};
 color: black;
 opacity: 1;
 padding: 5%;
-border: 1px solid black;
+// border: 1px solid black;
 `
 
 // Reusuable Wrapper for all the pages
