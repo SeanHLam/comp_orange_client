@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
 import HeaderComp from "./comps/header";
+import PostComp from "./comps/post";
 
  
 // Basic dashboard structure - to be updated
@@ -18,16 +19,11 @@ export default function Home() {
          <FlexBox>
 {/* Header containing logo, profile and some buttons*/}
             <HeaderComp></HeaderComp>
-           {/* <FlexBox>Logo</FlexBox>
-           <FlexBox>Buttons</FlexBox> */}
          </FlexBox>
        </Grid>
        <Grid item xs={6}>
 {/* Text area where users can post their tweets/spritz*/}
-         <FlexBox dir="column">Text Area
-           <textarea></textarea>
-           <Button variant="contained" disableElevation>Post</Button>
-         </FlexBox>
+      <PostComp />
        </Grid>
        <Grid item xs={6}>
 {/* Area where users can see their posted tweets/spritz*/}
