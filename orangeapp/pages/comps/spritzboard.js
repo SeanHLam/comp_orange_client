@@ -17,6 +17,8 @@ export default function PostDashboardComp() {
         <TweetComp></TweetComp>
         <TweetComp></TweetComp>
         <TweetComp></TweetComp>
+        <TweetComp></TweetComp>
+        <TweetComp></TweetComp>
   </FlexBox>
   )
 }
