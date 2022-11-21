@@ -11,7 +11,7 @@ export default function Login({ }) {
     });
 
     const [newUser, setNewUser] = useState('');
-    const [password, setPassword] = useState('');
+    const [userPassword, setPassword] = useState('');
     const [validPath, setValidPath] = useState("");
     const updateNewUser = (e) => {
         setNewUser(e.target.value)
@@ -40,7 +40,7 @@ export default function Login({ }) {
     // }
 
     const HandleNewUser = () => {
-        fetch(`http://localhost:3001/add-user?name=${newUser}`)
+        fetch(`http://localhost:3001/add-new-user?name=${newUser}&password=${userPassword}`)
             .then(async (res) => {
                 const data = await res.json()
                 console.log(data)
@@ -68,14 +68,14 @@ export default function Login({ }) {
                     placeholder="Username..." />
                 <input
                     type="password"
-                    value={password}
+                    value={userPassword}
                     onChange={updatePass}
                     id="pass"
                     name="pass"
                     className='input'
                     placeholder="Password..." />
                 <SubmitButton onClick={() => {
-                    HandleChange()
+                    //HandleChange()
                 }}
                     type="submit">Submit</SubmitButton>
             </FormCont>
@@ -92,7 +92,7 @@ export default function Login({ }) {
                         placeholder="Enter New Username" />
                     <input
                         type="password"
-                        value={password}
+                        value={userPassword}
                         onChange={updatePass}
                         id="pass"
                         name="pass"
