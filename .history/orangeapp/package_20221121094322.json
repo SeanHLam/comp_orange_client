@@ -12,15 +12,12 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.14",
-    "babel-preset-next": "^1.4.0",
     "next": "13.0.3",
-    "next-images": "^1.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.13.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3"
   },
