@@ -6,12 +6,19 @@ import Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
 import HeaderComp from "./comps/header";
 import PostComp from "./comps/post";
+import ReportModal from "./comps/resportmodal";
 
  
 // Basic dashboard structure - to be updated
 export default function Home() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
  return (
   <BackGround>
+    <Button onClick={handleOpen}>Report</Button>
+    <ReportModal handleClose={handleClose}  on={open}></ReportModal>
      <Wrapper>
      <Box sx={{ flexGrow: 1 }}>
      <Grid container spacing={2}>
