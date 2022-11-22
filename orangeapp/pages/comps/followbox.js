@@ -7,7 +7,12 @@ export default function FollowBoxComp({
     title = 'Followers'
 }) {
   return (
-    <FlexBox dir="column">
+    <FlexBox dir="column"
+        style={{
+            minHeight: 300,
+            justifyContent: 'flex-start'
+        }}
+    >
         <h2
             style={{
                 fontSize: '1em',
@@ -18,7 +23,8 @@ export default function FollowBoxComp({
         </h2>
         <FlexBox style={{
             minWidth: '100%',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
+            flexWrap: 'wrap'
         }}>
                 <FollowAvatarComp></FollowAvatarComp>
                 <FollowAvatarComp></FollowAvatarComp>

@@ -3,7 +3,7 @@ import React from 'react'
 import { FlexBox } from '../../styles/globals'
 
 export default function FollowAvatarComp({
-    username = 'username'
+    username = 'grumpycat'
 }) {
   return (
     <FlexBox dir="column">
