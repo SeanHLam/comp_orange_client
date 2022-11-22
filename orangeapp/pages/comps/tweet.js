@@ -2,7 +2,13 @@ import React from 'react'
 import { FlexBox } from '../../styles/globals'
 import { Avatar, Button, Grid } from '@mui/material'
 
-export default function TweetComp() {
+export default function TweetComp({
+    id,
+    text,
+    username,
+    handle
+}) {
+
   return (
     <FlexBox
         style={{
@@ -49,7 +55,7 @@ export default function TweetComp() {
                         padding:0,
                         margin: 0
                     }}
-                >Username</h5>
+                >{username}</h5>
                 {/* Userhandle */}
                 <h6
                  style={{
@@ -57,7 +63,7 @@ export default function TweetComp() {
                     margin: 0,
                     marginLeft: 5,
                     color: 'grey'
-                }}>@userhandle</h6>
+                }}>{handle}</h6>
                 </FlexBox>
                 <FlexBox
                      style={{
@@ -81,7 +87,7 @@ export default function TweetComp() {
                     fontSize: '.8em',
                     alignSelf: 'flex-start',
                 }}
-            >Duis dolore cupidatat magna cupidatat.</p>
+            >{text}</p>
         </FlexBox>
       </Grid>
     </FlexBox>
