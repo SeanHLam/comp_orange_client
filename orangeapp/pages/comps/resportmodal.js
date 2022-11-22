@@ -20,6 +20,7 @@ const style = {
 
 export default function ReportModal({ 
   handleClose = () => {},
+  handleNext = () => {},
   on=false
 }) {
   
@@ -39,6 +40,14 @@ export default function ReportModal({
         <FlexBox
           dir='column'
         >
+        <h2
+            style={{
+                fontSize: '1em',
+            
+                margin: '2%'
+            }}>
+            Send a Report
+        </h2>
      <textarea
             style={{
                 minHeight: 90,
@@ -52,6 +61,7 @@ export default function ReportModal({
         ></textarea>
             <FlexBox>
               <Button 
+               onClick={handleNext} 
                 variant="contained"
                 style={{
                 backgroundColor: '#f4a261',
@@ -60,7 +70,8 @@ export default function ReportModal({
                 }}
               >Report</Button>
 
-              <Button 
+              <Button
+                onClick={handleClose} 
                 variant="contained"
                 style={{
                 backgroundColor: 'gray',
