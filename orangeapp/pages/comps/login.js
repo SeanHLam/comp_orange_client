@@ -7,19 +7,31 @@ export default function Login({ }) {
 
     useEffect(() => {
         localStorage.clear();
-
     });
 
+    //state checking existing users
+    const [checkUser, setCheckUser] = useState('');
+    const [checkPass, setCheckPass] = useState('');
+    //tracking existing user data
+    const checkingUser = (e) => {
+        setCheckUser(e.target.value)
+    }
+    const checkingPass = (e) => {
+        setCheckPass(e.target.value)
+    }
+
+    //state for new users and password
     const [newUser, setNewUser] = useState('');
-    const [userPassword, setPassword] = useState('');
-    const [validPath, setValidPath] = useState("");
+    const [userPassword, setPassword] = useState('');  
+    //tracking new user data
     const updateNewUser = (e) => {
         setNewUser(e.target.value)
     }
-
     const updatePass = (e) => {
         setPassword(e.target.value)
     }
+
+    const [validPath, setValidPath] = useState('');
 
     // const HandleChange = () => {
     //     fetch(`http://localhost:3001/add-user?name=${newUser}&pass=${password}`)
@@ -44,7 +56,7 @@ export default function Login({ }) {
             .then(async (res) => {
                 const data = await res.json()
                 console.log(data)
-
+                setValidPath("/dashboard")
             })
         console.log("Button clicked")
     }
@@ -60,16 +72,16 @@ export default function Login({ }) {
                 <h2>Sign In/Register</h2>
                 <input
                     type="text"
-                    value={newUser}
-                    onChange={updateNewUser}
+                    value={checkUser}
+                    onChange={checkingUser}
                     id="user"
                     name="user"
                     className='input'
                     placeholder="Username..." />
                 <input
                     type="password"
-                    value={userPassword}
-                    onChange={updatePass}
+                    value={checkPass}
+                    onChange={checkingPass}
                     id="pass"
                     name="pass"
                     className='input'
@@ -81,7 +93,7 @@ export default function Login({ }) {
             </FormCont>
             <div>
                 <h2>New Account?</h2>
-                <FormCont method='post'>
+                <FormCont onSubmit={handlePage} method='post'>
                     <input
                         type="text"
                         value={newUser}
