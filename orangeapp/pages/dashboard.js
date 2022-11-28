@@ -3,17 +3,22 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Button } from "@mui/material";
 import HeaderComp from "./comps/header";
 import PostComp from "./comps/post";
+import ReportModal from "./comps/resportmodal";
+import ConfirmModal from "./comps/confirmmodal";
 import PostDashboardComp from "./comps/spritzboard";
 import FollowBoxComp from "./comps/followbox";
+import { Button } from "@mui/material";
 
  
 // Basic dashboard structure - to be updated
 export default function Home() {
+ 
+
  return (
   <BackGround>
+    
      <Wrapper>
      <Box sx={{ flexGrow: 1 }}>
      <Grid container spacing={2}>
@@ -23,21 +28,17 @@ export default function Home() {
             <HeaderComp></HeaderComp>
          </FlexBox>
        </Grid>
-{/* Text area where users can post their tweets/spritz*/}
-       <Grid item xs={4}>
-            <Grid item xs={12}>
-                <PostComp />
-            </Grid>
+
+       <Grid item xs={4}
+       style={{height: '100%'}}
+       >
             <Grid item xs={12}
-                style={{
-                    marginTop: '1em'
-                }}
             >
                 <FollowBoxComp />
             </Grid>
             <Grid item xs={12}
                 style={{
-                    marginTop: '1em'
+                    marginTop: '1em',
                 }}
             >
                 <FollowBoxComp title="Following" />
