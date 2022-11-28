@@ -12,13 +12,15 @@ export default function PostDashboardComp() {
       username: 'grumpycat',
       handle: '@grumpycat',
       id: 1,
-      text: "Why did the developer quit their job? Because they didn't get arrays."
+      text: "Why did the developer quit their job? Because they didn't get arrays.",
+      date: "Mon Nov 21 2022"
     },
     {
       username: 'grumpycat',
       handle: '@grumpycat',
       id: 2, 
-      text: "I'm afraid for the calendar. Its days are numbered."
+      text: "I'm afraid for the calendar. Its days are numbered.",
+      date: "Mon Nov 21 2022"
     }
   ])
 
@@ -27,7 +29,8 @@ export default function PostDashboardComp() {
       text,
       id: self.crypto.randomUUID(),
       username: 'grumpycat', //this will be changed once user auth is defined
-      handle: '@grumpycat' //this will be changed once user auth is defined
+      handle: '@grumpycat', //this will be changed once user auth is defined
+      date: new Date().toDateString('en-US')
     }
 
     setPosts([post, ...posts])
