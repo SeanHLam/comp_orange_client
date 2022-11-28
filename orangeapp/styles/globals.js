@@ -17,7 +17,9 @@ padding: 5%;
 // Reusuable Wrapper for all the pages
 export const Wrapper = styled.div`
 width:80%;
-height:100%;
+height: 100vh;
+overflow: scroll;
+scroll: hidden;
 display:flex;
 justify-content:center;
 align-items:flex-start;
@@ -32,4 +34,5 @@ display:flex;
 justify-content:center;
 align-items:center;
 background-color:#f4a261;
+overflow: scroll;
 `

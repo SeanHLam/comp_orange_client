@@ -1,11 +1,26 @@
 import React from 'react'
 import { FlexBox } from '../../styles/globals'
 import { Button } from '@mui/material'
-import { margin } from '@mui/system'
+import { useState, useEffect } from "react"
 
-export default function PostComp() {
+export default function PostComp({ onAddPost }) {
+
+    const [text, setText] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        onAddPost(text)
+        setText("")
+      }
+
+
   return (
-    <FlexBox dir="column">
+    <FlexBox dir="column"
+        style={{
+            width: '110%',
+            marginTop: -15
+        }}
+    >
         <h2
             style={{
                 fontSize: '1em',
@@ -15,6 +30,9 @@ export default function PostComp() {
             Sprit something
         </h2>
         <textarea
+            value={text} 
+            onChange={(e) => setText(e.target.value)}
+            placeholder='Say something here'
             style={{
                 minHeight: 90,
                 width: '90%',
@@ -26,6 +44,7 @@ export default function PostComp() {
             }}
         ></textarea>
         <Button 
+            onClick={handleSubmit}
             variant="contained" 
             disableElevation
             style={{

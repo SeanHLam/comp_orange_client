@@ -5,7 +5,10 @@ import { FlexBox } from '../../styles/globals';
 // import { useRouter } from 'next/router'
 // import avatar from '../../public/static/grumpycat.jpeg' 
 
-export default function HeaderComp() { 
+export default function HeaderComp({
+    username = 'GrumpyCat',
+    userhandle = '@grumpycat'
+}) { 
 
     return (
 //Parent div>
@@ -44,13 +47,13 @@ export default function HeaderComp() {
                     <h3 style={{
                         margin: '5%',
                         fontSize: '1.2em'
-                    }}>Username</h3>
+                    }}>{username}</h3>
                     <h4 style={{
                         margin: '5%',
                         marginTop: '1%',
                         color: 'grey',
                         fontSize: '.9em'
-                    }}>@userhandle</h4>
+                    }}>{userhandle}</h4>
                     <p style={{
                         margin: '5%',
                         marginTop: '0%',
