@@ -24,6 +24,15 @@ export default function PostDashboardComp() {
     }
   ])
 
+  useEffect(()=>{
+    // get current posts from backend
+    fetch('http://localhost:3001/get-posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      setPosts(data.posts)
+    })
+  })
+
   const handleAddPost = (text) => {
     const post = {
       text,
