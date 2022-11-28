@@ -5,14 +5,26 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import HeaderComp from "./comps/header";
 import PostComp from "./comps/post";
+import ReportModal from "./comps/resportmodal";
+import ConfirmModal from "./comps/confirmmodal";
 import PostDashboardComp from "./comps/spritzboard";
 import FollowBoxComp from "./comps/followbox";
 
  
 // Basic dashboard structure - to be updated
 export default function Home() {
+  const [open, setOpen] = React.useState(false);
+  const [conOpen, setConOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const confirmOpen = () => setConOpen(true);
+  const confirmClose = () => setConOpen(false);
+
  return (
   <BackGround>
+    <Button onClick={handleOpen}>Report</Button>
+    <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
+    <ReportModal handleNext={confirmOpen} handleClose={handleClose}  on={open}></ReportModal>
      <Wrapper>
      <Box sx={{ flexGrow: 1 }}>
      <Grid container spacing={2}>
