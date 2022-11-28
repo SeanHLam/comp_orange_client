@@ -6,8 +6,10 @@ export default function TweetComp({
     id,
     text,
     username,
-    handle
+    handle,
+    date
 }) {
+
 
   return (
     <FlexBox
@@ -79,7 +81,7 @@ export default function TweetComp({
                         margin: 0,
                         fontSize: '.6em',
                         color: 'grey',
-                    }}>21 Nov</p>
+                    }}>{date}</p>
                 </FlexBox>
             </FlexBox>
             <p
