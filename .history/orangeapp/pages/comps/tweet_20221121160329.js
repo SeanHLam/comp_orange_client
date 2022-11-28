@@ -5,31 +5,8 @@ import { useState, useEffect } from "react"
 
 export default function TweetComp() {
 
-// follow button text change
-    const [active, setActive] = useState(false);
-    const handleClick = () => {
-        setActive(!active);
-    }
+    const [follow, setFollow] = useState(false);
 
-
-
-import ReportModal from './resportmodal'
-import ConfirmModal from './confirmmodal'
-import FlagCircleIcon from '@mui/icons-material/FlagCircle';
-
-export default function TweetComp({
-    id,
-    text,
-    username,
-    handle,
-    date
-}) {
-    const [open, setOpen] = React.useState(false);
-    const [conOpen, setConOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const confirmOpen = () => setConOpen(true);
-    const confirmClose = () => setConOpen(false);
 
   return (
     <FlexBox
@@ -77,7 +54,7 @@ export default function TweetComp({
                         padding:0,
                         margin: 0
                     }}
-                >{username}</h5>
+                >Username</h5>
                 {/* Userhandle */}
                 <h6
                  style={{
@@ -85,22 +62,17 @@ export default function TweetComp({
                     margin: 0,
                     marginLeft: 5,
                     color: 'grey'
-
                 }}>@userhandle</h6>
-{/* follow - unfollow button for each user */}
                 <Button 
                     variant="contained"
-                    onClick={handleClick}
                     style={{
                         backgroundColor: '#f4a261',
-                        width: "8em",
+                        width: "fit-content",
                         height: "2em",
                         marginLeft: 10,
                         fontSize: ".7em"
                     }}
-                >{ active ? "Follow" : "Unfollow" }</Button>
-                }}>{handle}</h6>
-
+                >Follow</Button>
                 </FlexBox>
                 <FlexBox
                      style={{
@@ -109,22 +81,14 @@ export default function TweetComp({
                         justifyContent: 'flex-end'
                     }}
                 >
-                     {/* Date & Report*/}
+                     {/* Date */}
                     <p
                     style={{
                         padding:0,
                         margin: 0,
                         fontSize: '.6em',
                         color: 'grey',
-                    }}>{date}</p>
-                    <FlagCircleIcon 
-                    style={{
-                        color: "#f4a261",
-                        margin:"3%",
-                    }}
-                    onClick={handleOpen}>Report</FlagCircleIcon>
-                    <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
-                    <ReportModal handleNext={confirmOpen} handleClose={handleClose}  on={open}></ReportModal>
+                    }}>21 Nov</p>
                 </FlexBox>
             </FlexBox>
             <p
@@ -132,11 +96,9 @@ export default function TweetComp({
                     fontSize: '.8em',
                     alignSelf: 'flex-start',
                 }}
-            >{text}</p>
+            >Duis dolore cupidatat magna cupidatat.</p>
         </FlexBox>
-        
       </Grid>
-      
     </FlexBox>
   )
 }
