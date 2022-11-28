@@ -67,7 +67,7 @@ export default function TweetComp() {
                     marginLeft: 5,
                     color: 'grey'
                 }}>@userhandle</h6>
-{/* follow - unfollow button for each user */}
+{/*  */}
                 <Button 
                     variant="contained"
                     onClick={handleClick}

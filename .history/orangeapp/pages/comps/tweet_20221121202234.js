@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 
 export default function TweetComp() {
 
-// follow button text change
+
     const [active, setActive] = useState(false);
     const handleClick = () => {
         setActive(!active);
@@ -67,7 +67,6 @@ export default function TweetComp() {
                     marginLeft: 5,
                     color: 'grey'
                 }}>@userhandle</h6>
-{/* follow - unfollow button for each user */}
                 <Button 
                     variant="contained"
                     onClick={handleClick}
