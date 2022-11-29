@@ -11,8 +11,13 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+<<<<<<< HEAD
     "@mui/icons-material": "^5.10.14",
     "@mui/material": "^5.10.14",
+=======
+    "@mui/icons-material": "^5.10.16",
+    "@mui/material": "^5.10.16",
+>>>>>>> 46a6a355298f2daa631f26089dae6c5dbf3e9c24
     "babel-preset-next": "^1.4.0",
     "i": "^0.3.7",
     "next": "13.0.3",
