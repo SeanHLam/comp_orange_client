@@ -2,17 +2,6 @@ import React from 'react'
 import { FlexBox } from '../../styles/globals'
 import { Avatar, Button, Grid } from '@mui/material'
 import { useState, useEffect } from "react"
-
-export default function TweetComp() {
-
-// follow button text change
-    const [active, setActive] = useState(false);
-    const handleClick = () => {
-        setActive(!active);
-    }
-
-
-
 import ReportModal from './resportmodal'
 import ConfirmModal from './confirmmodal'
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
@@ -30,6 +19,13 @@ export default function TweetComp({
     const handleClose = () => setOpen(false);
     const confirmOpen = () => setConOpen(true);
     const confirmClose = () => setConOpen(false);
+
+    // follow button text change
+    const [active, setActive] = useState(false);
+    const handleClick = () => {
+        setActive(!active);
+    }
+
 
   return (
     <FlexBox
@@ -86,7 +82,7 @@ export default function TweetComp({
                     marginLeft: 5,
                     color: 'grey'
 
-                }}>@userhandle</h6>
+                }}>{handle}</h6>
 {/* follow - unfollow button for each user */}
                 <Button 
                     variant="contained"
@@ -99,8 +95,7 @@ export default function TweetComp({
                         fontSize: ".7em"
                     }}
                 >{ active ? "Follow" : "Unfollow" }</Button>
-                }}>{handle}</h6>
-
+        
                 </FlexBox>
                 <FlexBox
                      style={{
@@ -138,5 +133,6 @@ export default function TweetComp({
       </Grid>
       
     </FlexBox>
+
   )
 }
