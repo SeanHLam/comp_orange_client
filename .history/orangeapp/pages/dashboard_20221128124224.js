@@ -9,7 +9,7 @@ import ReportModal from "./comps/resportmodal";
 import ConfirmModal from "./comps/confirmmodal";
 import PostDashboardComp from "./comps/spritzboard";
 import FollowBoxComp from "./comps/followbox";
-import { Avatar, Button } from '@mui/material'
+
  
 // Basic dashboard structure - to be updated
 export default function Home() {

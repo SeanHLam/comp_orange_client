@@ -16,6 +16,8 @@ export default function TweetComp({
     const handleClick = () => {
         setActive(!active);
     }
+>>>>>>> 41d14e8eec94c944f7ea3175533d0edf1e3c10fb
+
 
   return (
     <FlexBox

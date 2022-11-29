@@ -3,6 +3,15 @@ import { FlexBox } from '../../styles/globals'
 import { Avatar, Button, Grid } from '@mui/material'
 import { useState, useEffect } from "react"
 
+<<<<<<< HEAD
+export default function TweetComp() {
+
+// follow button text change
+    const [active, setActive] = useState(false);
+    const handleClick = () => {
+        setActive(!active);
+    }
+=======
 export default function TweetComp({
     id,
     text,
@@ -10,12 +19,8 @@ export default function TweetComp({
     handle,
     date
 }) {
+>>>>>>> 41d14e8eec94c944f7ea3175533d0edf1e3c10fb
 
-    // follow button text change
-    const [active, setActive] = useState(false);
-    const handleClick = () => {
-        setActive(!active);
-    }
 
   return (
     <FlexBox
@@ -65,12 +70,13 @@ export default function TweetComp({
                     }}
                 >{username}</h5>
                 {/* Userhandle */}
-                <h6
+                <
                  style={{
                     padding:0,
                     margin: 0,
                     marginLeft: 5,
                     color: 'grey'
+<<<<<<< HEAD
                 }}>{handle}</h6>
 {/* follow - unfollow button for each user */}
                 <Button 
@@ -84,6 +90,9 @@ export default function TweetComp({
                         fontSize: ".7em"
                     }}
                 >{ active ? "Follow" : "Unfollow" }</Button>
+=======
+                
+>>>>>>> 41d14e8eec94c944f7ea3175533d0edf1e3c10fb
                 </FlexBox>
                 <FlexBox
                      style={{
