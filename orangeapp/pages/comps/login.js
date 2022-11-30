@@ -51,24 +51,34 @@ export default function Login({ }) {
     //         })
     // }
 
+    //Send new user data to the DB
     const HandleNewUser = () => {
         fetch(`http://localhost:3001/add-new-user?name=${newUser}&password=${userPassword}`)
             .then(async (res) => {
                 const data = await res.json()
                 console.log(data)
-                setValidPath("/dashboard")
+                window.location.href="/dashboard"
             })
         console.log("Button clicked")
     }
 
-    const handlePage = (e) => {
-        e.preventDefault()
-        router.push(validPath)
+    // Check for existing user in the DB
+    const HandleUserCheck = () => {
+        fetch(`http://localhost:3001/check-user-login?name=${checkUser}&password=${checkPass}`)
+            .then(async (res) => {
+                const data = await res.json()
+                console.log(data)
+                //window.location.href="/dashboard"
+            })
+        console.log("Button clicked")
     }
-
+    // const handlePage = (e) => {
+    //     e.preventDefault()
+    //     router.push(validPath)
+    // }
     return (
         <div>
-            <FormCont onSubmit={handlePage} method="post">
+            <FormCont method="post">
                 <h2>Sign In/Register</h2>
                 <input
                     type="text"
@@ -87,13 +97,13 @@ export default function Login({ }) {
                     className='input'
                     placeholder="Password..." />
                 <SubmitButton onClick={() => {
-                    //HandleChange()
+                    HandleUserCheck()
                 }}
                     type="submit">Submit</SubmitButton>
             </FormCont>
             <div>
                 <h2>New Account?</h2>
-                <FormCont onSubmit={handlePage} method='post'>
+                <FormCont method='post'>
                     <input
                         type="text"
                         value={newUser}
