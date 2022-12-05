@@ -82,7 +82,7 @@ export default function Login({ }) {
             <div>
                 <h2>New Account?</h2>
                 <FormCont method='post'>
-                    <input
+                    <Inputcont
                         type="text"
                         value={newUser}
                         onChange={updateNewUser}
@@ -90,7 +90,7 @@ export default function Login({ }) {
                         name="test"
                         className='input'
                         placeholder="Enter New Username" />
-                    <input
+                    <Inputcont
                         type="password"
                         value={userPassword}
                         onChange={updatePass}
@@ -116,9 +116,18 @@ flex-direction: column;
 justify-content:center;
 align-items:center;
 align-content:center;
-width: 25%;
+width: 35%;
 margin: 1%;
 `
 const SubmitButton = styled.button`
+width: 100px;
+height: 40px;
+font-size: 16px;
+margin: 30px;
+`
 
+const Inputcont = styled.input `
+width: 200px;
+height: 30px;
+margin: 10px;
 `

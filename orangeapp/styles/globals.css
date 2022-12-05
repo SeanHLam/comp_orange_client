@@ -28,3 +28,8 @@ a {
 .example::-webkit-scrollbar {
   display: none;
 }
+
+
+.hidden {
+  display:none;
+}
