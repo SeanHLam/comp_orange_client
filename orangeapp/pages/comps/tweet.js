@@ -25,10 +25,25 @@ export default function TweetComp({
     const handleClick = () => {
         setActive(!active);
     }
+	const handleEditClick = ()=>{
+        let parent = event.target.closest('.tweet');
+        let textbox = parent.querySelector('.textbox');
+        textbox.classList.toggle('hidden')
+		console.log('edit the tweet')
+    }
 
-
+    const handleSaveClick = ()=>{
+        let parent = event.target.closest('.tweet');
+        let textbox = parent.querySelector('.textbox');
+        let paragraph = parent.querySelector('.pbox');
+        let textarea = textbox.querySelector('textarea')
+        paragraph.innerText = textarea.value; 
+        textbox.classList.toggle('hidden')
+       
+    }
   return (
     <FlexBox
+        class="tweet"
         style={{
             width: '100%',
             borderRadius: 0,
@@ -95,7 +110,20 @@ export default function TweetComp({
                         fontSize: ".7em"
                     }}
                 >{ active ? "Follow" : "Unfollow" }</Button>
-        
+                <Button
+                
+                variant="contained"
+                    onClick={handleEditClick}
+                    style={{
+                        backgroundColor: '#f4a261',
+                        width: "8em",
+                        height: "2em",
+                        marginLeft: 10,
+                        fontSize: ".7em"
+                    }}
+               >  Edit 
+                </Button>
+
                 </FlexBox>
                 <FlexBox
                      style={{
@@ -122,12 +150,17 @@ export default function TweetComp({
                     <ReportModal handleNext={confirmOpen} handleClose={handleClose}  on={open}></ReportModal>
                 </FlexBox>
             </FlexBox>
-            <p
+            <p class = 'pbox'
                 style={{
                     fontSize: '.8em',
                     alignSelf: 'flex-start',
                 }}
             >{text}</p>
+            <div class="textbox hidden" > 
+                <textarea
+                >{text}</textarea>
+                <button onClick={handleSaveClick}> Save </button>
+             </div>
         </FlexBox>
         
       </Grid>
