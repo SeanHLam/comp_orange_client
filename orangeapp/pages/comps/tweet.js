@@ -13,12 +13,17 @@ export default function TweetComp({
     handle,
     date
 }) {
+    //opens and closes both modals
     const [open, setOpen] = React.useState(false);
     const [conOpen, setConOpen] = React.useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const confirmOpen = () => setConOpen(true);
     const confirmClose = () => setConOpen(false);
+
+    const handleModalReport = ()=>{
+        setConOpen(true)
+        setOpen(false)
+    }
 
     // follow button text change
     const [active, setActive] = useState(false);
@@ -140,6 +145,8 @@ export default function TweetComp({
                         fontSize: '.6em',
                         color: 'grey',
                     }}>{date}</p>
+                    
+                    {/* On click to turn on report modal */}
                     <FlagCircleIcon 
                     style={{
                         color: "#f4a261",
@@ -147,7 +154,7 @@ export default function TweetComp({
                     }}
                     onClick={handleOpen}>Report</FlagCircleIcon>
                     <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
-                    <ReportModal handleNext={confirmOpen} handleClose={handleClose}  on={open}></ReportModal>
+                    <ReportModal handleNext={handleModalReport} handleClose={handleClose}  on={open}></ReportModal>
                 </FlexBox>
             </FlexBox>
             <p class = 'pbox'
