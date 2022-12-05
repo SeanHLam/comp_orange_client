@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { flexbox } from '@mui/system';
 import { FlexBox } from '../../styles/globals';
+import { useState, useEffect } from "react"
 
 const style = {
   position: 'absolute',
@@ -18,12 +19,34 @@ const style = {
 
 };
 
+
+
+//sets the modal to be visible or not
 export default function ReportModal({ 
   handleClose = () => {},
   handleNext = () => {},
   on=false
 }) {
   
+
+const [reportTxt, setReportTxt] = useState('');
+
+const handlePage = (e) => {
+    e.preventDefault()
+}
+const updateBody = (e) => {
+  setReportTxt(e.target.value)
+}
+
+  const handleReport = () => {
+    fetch(`http://localhost:3001/send-report?report=${reportTxt}`)
+        .then(async (res) => {
+            //const data = await res.json()
+            //console.log(data)
+        })
+    handleNext()
+    console.log("Button clicked")
+  }
 
   
 
@@ -48,38 +71,57 @@ export default function ReportModal({
             }}>
             Send a Report
         </h2>
-     <textarea
-            style={{
-                minHeight: 90,
-                width: '90%',
-                backgroundColor: 'white',
-                borderRadius: '5px',
-                marginTop: '5%',
-                marginBottom: '5%',
-                color: 'black'
-            }}
-        ></textarea>
-            <FlexBox>
-              <Button 
-               onClick={handleNext} 
-                variant="contained"
+          <form 
+          onSubmit={handlePage} method="post"
+          style={{
+            minHeight: 90,
+            width: '90%',
+            backgroundColor: 'white',
+            borderRadius: '5px',
+            marginTop: '5%',
+            marginBottom: '5%',
+            color: 'black'
+        }}>
+            <textarea
+                onChange={updateBody}
                 style={{
-                backgroundColor: '#f4a261',
-                width: 100,
-                marginRight:30
+                    minHeight: 90,
+                    width: '90%',
+                    backgroundColor: 'white',
+                    borderRadius: '5px',
+                    marginTop: '5%',
+                    marginBottom: '5%',
+                    color: 'black'
                 }}
-              >Report</Button>
+            ></textarea>
 
-              <Button
-                onClick={handleClose} 
-                variant="contained"
-                style={{
-                backgroundColor: 'gray',
-                width: 100
+        
+
+              <FlexBox>
+                <Button 
+                  type="submit"
+                  onClick={handleReport} 
+                  variant="contained"
+                  style={{
+                  backgroundColor: '#f4a261',
+                  width: 100,
+                  marginRight:30
                   }}
-              >Back</Button>
-             </FlexBox>
-           </FlexBox>
+                >Report</Button>
+
+                  <Button
+                   
+                    onClick={handleClose} 
+                    variant="contained"
+                    style={{
+                    backgroundColor: 'gray',
+                    width: 100
+                      }}
+                  >Back</Button>
+                </FlexBox>
+              </form>
+            </FlexBox>
+           
         </Box>
         
       </Modal>

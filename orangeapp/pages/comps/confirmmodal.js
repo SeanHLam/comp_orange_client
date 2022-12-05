@@ -19,6 +19,7 @@ const style = {
 
 };
 
+
 export default function ConfirmModal({ 
   handleClose = () => {},
   on=false
@@ -29,7 +30,6 @@ export default function ConfirmModal({
       
       <Modal
         open={on}
-
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
