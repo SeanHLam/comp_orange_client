@@ -22,7 +22,7 @@ export default function Login({ }) {
 
     //state for new users and password
     const [newUser, setNewUser] = useState('');
-    const [userPassword, setPassword] = useState('');  
+    const [userPassword, setPassword] = useState('');
     //tracking new user data
     const updateNewUser = (e) => {
         setNewUser(e.target.value)
@@ -57,19 +57,22 @@ export default function Login({ }) {
             .then(async (res) => {
                 const data = await res.json()
                 console.log(data)
-                window.location.href="/dashboard"
+                //window.location.href="/dashboard"
             })
         console.log("Button clicked")
     }
 
     // Check for existing user in the DB
     const HandleUserCheck = () => {
+        let incoming = "";
         fetch(`http://localhost:3001/check-user-login?name=${checkUser}&password=${checkPass}`)
             .then(async (res) => {
                 const data = await res.json()
-                console.log(data)
+                incoming = data;
+                console.log(incoming)
                 //window.location.href="/dashboard"
             })
+        // console.log(incoming)
         console.log("Button clicked")
     }
     // const handlePage = (e) => {
@@ -84,7 +87,7 @@ export default function Login({ }) {
                     type="text"
                     value={checkUser}
                     onChange={checkingUser}
-                    id="user"
+                    id="user1"
                     name="user"
                     className='input'
                     placeholder="Username..." />
@@ -92,7 +95,7 @@ export default function Login({ }) {
                     type="password"
                     value={checkPass}
                     onChange={checkingPass}
-                    id="pass"
+                    id="pass1"
                     name="pass"
                     className='input'
                     placeholder="Password..." />
