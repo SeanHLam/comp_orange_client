@@ -24,32 +24,39 @@ export default function PostDashboardComp() {
     }
   ])
 
-  useEffect(()=>{
-    // get current posts from backend
-    fetch('http://localhost:3001/get-posts')
-    .then(async(res)=> {
-      const data = await res.json()
-      setPosts(data.posts)
-    })
-  })
+  // useEffect( async () => {
+  //   // get current posts from backend
+  //   await fetch('http://localhost:3001/posts')
+  //   .then(res => console.log(res.text))
+  //   // .then(async (res) => {
+  //   //   const data = await res.json()
+  //   //   alert(data)
+  //   // })
+  //   // .then(data => console.log(data))
+
+  //   // setPosts([data, ...posts])
+  // }, [])
 
   const handleAddPost = (text) => {
     const post = {
-      text,
-      id: self.crypto.randomUUID(),
       username: 'grumpycat', //this will be changed once user auth is defined
       handle: '@grumpycat', //this will be changed once user auth is defined
+      // id: self.crypto.randomUUID(),
+      text: text,
       date: new Date().toDateString('en-US')
     }
 
+    //sends post to backend to create static api
+    fetch(`http://localhost:3001/add-post?post=${post.text}&id=${post.id}&user=${post.username}&userhandle=${post.handle}&date=${post.date}`)
+    .then(async (res) => {
+        const data = await res.json()
+        console.log(data)
+    })
+
     setPosts([post, ...posts])
     console.log("New Post:", text)
-
-    fetch(`http://localhost:3001/add-post?post=${post}`)
-    console.log(posts)
   }
-
-
+  
   return (
     <FlexBox dir="column"
       style={{
@@ -71,7 +78,7 @@ export default function PostDashboardComp() {
         <TweetComp 
           key={post.id} 
           id={post.id} 
-          text={post.text}
+          text={post.post}
           username={post.username}
           handle={post.handle}
           {...post}
