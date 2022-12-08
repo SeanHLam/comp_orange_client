@@ -6,10 +6,6 @@ import ReportModal from './resportmodal'
 import ConfirmModal from './confirmmodal'
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 
-// for(i=0; i< numUsers; i++) {
-
-// }
-
 export default function TweetComp({
     id,
     text,
@@ -31,10 +27,18 @@ export default function TweetComp({
 
     // follow button text change
     const [active, setActive] = useState(false);
+    
     const handleClick = () => {
-        setActive(!active);
+          const relationship = {
+            following: localStorage.getItem("currentUser"),
+            followed: {username} 
+          }
 
-        // fetch(`http://localhost:3001/relationship?following_id=${}`)
+        //current user name & user name they want to follow go to backend   
+            fetch(`http://localhost:3001/relationship?following_name=${relationship.following}&followed_name=${relationship.followed}`)
+            .then(async (res) => {
+            }) 
+        setActive(!active);
     }
 
    
@@ -123,7 +127,7 @@ export default function TweetComp({
                         marginLeft: 10,
                         fontSize: ".7em"
                     }}
-                >{ active ? "Follow" : "Unfollow" }</Button>
+                >{ active ? "unfollow" : "Follow" }</Button>
  {/* Edit post                */}
                 <Button
                 variant="contained"
@@ -159,7 +163,7 @@ export default function TweetComp({
                     <FlagCircleIcon 
                     style={{
                         color: "#f4a261",
-                        margin:"3%",
+                        margin:"3%", 
                     }}
                     onClick={handleOpen}>Report</FlagCircleIcon>
                     <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
