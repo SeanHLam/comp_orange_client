@@ -25,27 +25,29 @@ const style = {
 export default function ReportModal({ 
   handleClose = () => {},
   handleNext = () => {},
-  on=false
+  on=false,
+  postid="",
 }) {
   
 
 const [reportTxt, setReportTxt] = useState('');
 
+
 const handlePage = (e) => {
     e.preventDefault()
 }
+
+//set text of report text box
 const updateBody = (e) => {
   setReportTxt(e.target.value)
 }
 
+//sends the report text and the post id to the server
   const handleReport = () => {
-    fetch(`http://localhost:3001/send-report?report=${reportTxt}`)
+    fetch(`http://localhost:3001/send-report?report=${reportTxt}&postid=${postid}`)
         .then(async (res) => {
-            //const data = await res.json()
-            //console.log(data)
         })
     handleNext()
-    console.log("Button clicked")
   }
 
   
