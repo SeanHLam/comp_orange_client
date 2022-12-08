@@ -60,6 +60,20 @@ export default function PostDashboardComp() {
       setPosts(data.data)
     });
   }
+
+
+  const handleDeletePost = (params) => {
+    fetch(`http://localhost:3001/delete-post?id=${params}`)
+    .then(async (res) => {
+      // alert(params)
+    })
+
+    fetch('http://localhost:3001/posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      setPosts(data.data)
+    });
+  }
   
   return (
     <FlexBox dir="column"
@@ -81,7 +95,8 @@ export default function PostDashboardComp() {
   {posts.map(post =>(
     (post.name === localStorage.getItem("currentUser") ?
 
-        <UserTweetComp 
+        <UserTweetComp
+          onDeletePost={() => handleDeletePost(post.id)} 
           key={post.id} 
           id={post.id} 
           text={post.post}
