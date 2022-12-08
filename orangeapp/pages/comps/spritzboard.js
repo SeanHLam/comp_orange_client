@@ -55,6 +55,12 @@ export default function PostDashboardComp() {
 
     // setPosts([post, ...posts])
     //console.log("New Post:", text)
+
+    fetch('http://localhost:3001/posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      setPosts(data.data)
+    });
   }
   
   return (
@@ -79,7 +85,7 @@ export default function PostDashboardComp() {
           key={post.id} 
           id={post.id} 
           text={post.post}
-          username={post.username}
+          username={post.name}
           handle={post.handle}
           {...post}
           />
