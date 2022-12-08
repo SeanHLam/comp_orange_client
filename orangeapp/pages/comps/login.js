@@ -38,17 +38,18 @@ export default function Login({ }) {
             .then(async (res) => {
                 const data = await res.json()
                 setCurrUser([])
-                
-
+                console.log(data)
                 for (let index = 0; index < data.row.length; index++) {
-                    //console.log(data.row[index])
+                    console.log(data.row[index])
                     if (loginUser === data.row[index].name & loginPassword === data.row[index].password & loginUser !== "") {
                         localStorage.setItem('currentUser', data.row[index].name);
                         localStorage.setItem('currentPass', data.row[index].password)
+                        localStorage.setItem('currentId', data.row[index].id)
                         router.push("/dashboard")
                     }
                 }
-                console.log(localStorage.getItem("currentUser"))
+
+                
             
                 if (typeof localStorage.getItem("currentUser") == null ) {
                     alert("Invalid Login")
