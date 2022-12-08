@@ -49,7 +49,7 @@ export default function PostDashboardComp() {
     //sends post to backend to create static api
     fetch(`http://localhost:3001/add-post?post=${post.text}&id=${post.id}&user=${post.username}&userhandle=${post.handle}&date=${post.date}`)
     .then(async (res) => {
-        const data = await res.json()
+       const data = await res.json()
         console.log(data)
     })
 

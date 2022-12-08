@@ -4,15 +4,19 @@ import { useRouter } from 'next/router'
 
 export default function Login({ }) {
     const router = useRouter()
+    // localStorage.clear();
+        // useEffect(() => {
+        //     localStorage.clear();
 
-    useEffect(() => {
-        localStorage.clear();
-
-    });
+        // });
 
     const [newUser, setNewUser] = useState('');
     const [userPassword, setPassword] = useState('');
+    const [loginUser, setLoginUser] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+    const [currUser, setCurrUser] = useState([]);
     const [validPath, setValidPath] = useState("");
+    
     const updateNewUser = (e) => {
         setNewUser(e.target.value)
     }
@@ -21,23 +25,45 @@ export default function Login({ }) {
         setPassword(e.target.value)
     }
 
-    // const HandleChange = () => {
-    //     fetch(`http://localhost:3001/add-user?name=${newUser}&pass=${password}`)
-    //         .then(async (res) => {
-    //             const data = await res.json()
-    //             if (typeof data !== 'undefined' && data.length > 0) {
-    //                 localStorage.setItem('currentUser', data[0].id);
-    //                 setValidPath("/game")
+    const handleUser = (e) => {
+        setLoginUser(e.target.value)
+    }
 
-    //             } else {
-    //                 localStorage.setItem('currentUser', "");
-    //                 setValidPath("/")
-    //                 alert("Invalid Login")
+    const handlePass = (e) => {
+        setLoginPassword(e.target.value)
+    }
 
-    //             }
+    const handleLogin = () => {
+        fetch(`http://localhost:3001/check-user-login?name=${loginUser}&password=${loginPassword}`)
+            .then(async (res) => {
+                const data = await res.json()
+                setCurrUser([])
+                
 
-    //         })
-    // }
+                for (let index = 0; index < data.row.length; index++) {
+                    //console.log(data.row[index])
+                    if (loginUser === data.row[index].name & loginPassword === data.row[index].password & loginUser !== "") {
+                        localStorage.setItem('currentUser', data.row[index].name);
+                        localStorage.setItem('currentPass', data.row[index].password)
+                        router.push("/dashboard")
+                    }
+                }
+                console.log(localStorage.getItem("currentUser"))
+            
+                if (typeof localStorage.getItem("currentUser") == null ) {
+                    alert("Invalid Login")
+                }
+
+                // if (typeof currUser.name !== 'undefined') {
+                //     //localStorage.setItem('currentUser', data[0].id);
+                   
+                // } else {
+                //     localStorage.setItem('currentUser', "");
+                //     alert("Invalid Login")
+                // }
+
+            })
+    }
 
     const HandleNewUser = () => {
         fetch(`http://localhost:3001/add-new-user?name=${newUser}&password=${userPassword}`)
@@ -60,22 +86,22 @@ export default function Login({ }) {
                 <h2>Sign In/Register</h2>
                 <input
                     type="text"
-                    value={newUser}
-                    onChange={updateNewUser}
+                    value={loginUser}
+                    onChange={handleUser}
                     id="user"
                     name="user"
                     className='input'
                     placeholder="Username..." />
                 <input
                     type="password"
-                    value={userPassword}
-                    onChange={updatePass}
+                    value={loginPassword}
+                    onChange={handlePass}
                     id="pass"
                     name="pass"
                     className='input'
                     placeholder="Password..." />
                 <SubmitButton onClick={() => {
-                    //HandleChange()
+                    handleLogin()
                 }}
                     type="submit">Submit</SubmitButton>
             </FormCont>
