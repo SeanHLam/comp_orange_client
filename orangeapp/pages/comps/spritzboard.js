@@ -24,37 +24,37 @@ export default function PostDashboardComp() {
     }
   ])
 
-  // useEffect( async () => {
-  //   // get current posts from backend
-  //   await fetch('http://localhost:3001/posts')
-  //   .then(res => console.log(res.text))
-  //   // .then(async (res) => {
-  //   //   const data = await res.json()
-  //   //   alert(data)
-  //   // })
-  //   // .then(data => console.log(data))
 
-  //   // setPosts([data, ...posts])
-  // }, [])
+  useEffect(()=>{
+    // get current notes from backend
+    fetch('http://localhost:3001/posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      console.log(data.data)
+      setPosts(data.data)
+    });
+    return () => {
+      };
+      }, []);
 
   const handleAddPost = (text) => {
     const post = {
-      username: 'grumpycat', //this will be changed once user auth is defined
-      handle: '@grumpycat', //this will be changed once user auth is defined
-      // id: self.crypto.randomUUID(),
+      username: localStorage.getItem("currentUser"), //uses currently logged in username
+      handle: '@' + localStorage.getItem("currentUser"), 
+      id: localStorage.getItem("currentId"),
       text: text,
       date: new Date().toDateString('en-US')
     }
-
+    
     //sends post to backend to create static api
-    fetch(`http://localhost:3001/add-post?post=${post.text}&id=${post.id}&user=${post.username}&userhandle=${post.handle}&date=${post.date}`)
+    fetch(`http://localhost:3001/add-post?post=${post.text}&id=${post.id}&user=${post.username}&handle=${post.handle}&date=${post.date}`)
     .then(async (res) => {
-       const data = await res.json()
-        console.log(data)
+      //  const data = await res.json()
+      //   console.log(data)
     })
 
-    setPosts([post, ...posts])
-    console.log("New Post:", text)
+    // setPosts([post, ...posts])
+    //console.log("New Post:", text)
   }
   
   return (
