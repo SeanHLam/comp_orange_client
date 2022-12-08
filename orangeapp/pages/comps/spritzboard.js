@@ -53,9 +53,6 @@ export default function PostDashboardComp() {
       //   console.log(data)
     })
 
-    // setPosts([post, ...posts])
-    //console.log("New Post:", text)
-
     fetch('http://localhost:3001/posts')
     .then(async(res)=> {
       const data = await res.json()
