@@ -163,7 +163,7 @@ export default function TweetComp({
                     }}
                     onClick={handleOpen}>Report</FlagCircleIcon>
                     <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
-                    <ReportModal handleNext={handleModalReport} handleClose={handleClose}  on={open}></ReportModal>
+                    <ReportModal postid={id} handleNext={handleModalReport} handleClose={handleClose}  on={open}></ReportModal>
                 </FlexBox>
             </FlexBox>
             <p class = 'pbox'
