@@ -7,6 +7,7 @@ import ConfirmModal from './confirmmodal'
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 
 export default function UserTweetComp({
+    onDeletePost,
     id,
     text,
     username,
@@ -14,11 +15,6 @@ export default function UserTweetComp({
     date
 }) {
    
-    // follow button text change
-    const [active, setActive] = useState(false);
-    const handleClick = () => {
-        setActive(!active);
-    }
 	const handleEditClick = ()=>{
         let parent = event.target.closest('.tweet');
         let textbox = parent.querySelector('.textbox');
@@ -35,6 +31,12 @@ export default function UserTweetComp({
         textbox.classList.toggle('hidden')
        
     }
+
+    const handleDelete = () => {
+        onDeletePost()
+    }
+
+
   return (
     <FlexBox
         class="tweet"
@@ -105,7 +107,19 @@ export default function UserTweetComp({
                     }}
                >  Edit 
                 </Button>
-
+{/* Delete's post */}
+                <Button
+                    variant="contained"
+                    onClick={handleDelete}
+                    style={{
+                        backgroundColor: '#f4a261',
+                        width: "8em",
+                        height: "2em",
+                        marginLeft: 10,
+                        fontSize: ".7em"
+                    }}
+               >  Delete
+                </Button>
                 </FlexBox>
                 <FlexBox
                      style={{
