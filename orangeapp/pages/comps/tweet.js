@@ -6,6 +6,10 @@ import ReportModal from './resportmodal'
 import ConfirmModal from './confirmmodal'
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 
+// for(i=0; i< numUsers; i++) {
+
+// }
+
 export default function TweetComp({
     id,
     text,
@@ -29,7 +33,12 @@ export default function TweetComp({
     const [active, setActive] = useState(false);
     const handleClick = () => {
         setActive(!active);
+
+        // fetch(`http://localhost:3001/relationship?following_id=${}`)
     }
+
+   
+    //post function I guess?
 	const handleEditClick = ()=>{
         let parent = event.target.closest('.tweet');
         let textbox = parent.querySelector('.textbox');
@@ -115,8 +124,8 @@ export default function TweetComp({
                         fontSize: ".7em"
                     }}
                 >{ active ? "Follow" : "Unfollow" }</Button>
+ {/* Edit post                */}
                 <Button
-                
                 variant="contained"
                     onClick={handleEditClick}
                     style={{
