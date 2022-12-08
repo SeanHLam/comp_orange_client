@@ -7,7 +7,8 @@ import { FlexBox } from '../../styles/globals';
 
 export default function HeaderComp({
     username = 'GrumpyCat',
-    userhandle = '@grumpycat'
+    userhandle = '@grumpycat',
+    numofspritz = 0
 }) { 
 
     return (
@@ -82,7 +83,7 @@ export default function HeaderComp({
                         margin: '.5em'
                     }}
                 >
-                   0 Spritz 
+                   {numofspritz} Spritz 
                 </p>
                  {/* Following Stats */}
                 <p
