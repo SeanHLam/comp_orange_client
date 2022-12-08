@@ -6,46 +6,35 @@ import ReportModal from './resportmodal'
 import ConfirmModal from './confirmmodal'
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 
-export default function TweetComp({
+export default function UserTweetComp({
     id,
     text,
     username,
     handle,
     date
 }) {
-    //opens and closes both modals
-    const [open, setOpen] = React.useState(false);
-    const [conOpen, setConOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const confirmClose = () => setConOpen(false);
-
-    const handleModalReport = ()=>{
-        setConOpen(true)
-        setOpen(false)
-    }
-
+   
     // follow button text change
     const [active, setActive] = useState(false);
     const handleClick = () => {
         setActive(!active);
     }
-	// const handleEditClick = ()=>{
-    //     let parent = event.target.closest('.tweet');
-    //     let textbox = parent.querySelector('.textbox');
-    //     textbox.classList.toggle('hidden')
-	// 	console.log('edit the tweet')
-    // }
+	const handleEditClick = ()=>{
+        let parent = event.target.closest('.tweet');
+        let textbox = parent.querySelector('.textbox');
+        textbox.classList.toggle('hidden')
+		console.log('edit the tweet')
+    }
 
-    // const handleSaveClick = ()=>{
-    //     let parent = event.target.closest('.tweet');
-    //     let textbox = parent.querySelector('.textbox');
-    //     let paragraph = parent.querySelector('.pbox');
-    //     let textarea = textbox.querySelector('textarea')
-    //     paragraph.innerText = textarea.value; 
-    //     textbox.classList.toggle('hidden')
+    const handleSaveClick = ()=>{
+        let parent = event.target.closest('.tweet');
+        let textbox = parent.querySelector('.textbox');
+        let paragraph = parent.querySelector('.pbox');
+        let textarea = textbox.querySelector('textarea')
+        paragraph.innerText = textarea.value; 
+        textbox.classList.toggle('hidden')
        
-    // }
+    }
   return (
     <FlexBox
         class="tweet"
@@ -103,19 +92,7 @@ export default function TweetComp({
                     color: 'grey'
 
                 }}>{handle}</h6>
-{/* follow - unfollow button for each user */}
-                <Button 
-                    variant="contained"
-                    onClick={handleClick}
-                    style={{
-                        backgroundColor: '#f4a261',
-                        width: "8em",
-                        height: "2em",
-                        marginLeft: 10,
-                        fontSize: ".7em"
-                    }}
-                >{ active ? "Follow" : "Unfollow" }</Button>
-                {/* <Button
+                <Button
                 
                 variant="contained"
                     onClick={handleEditClick}
@@ -127,7 +104,7 @@ export default function TweetComp({
                         fontSize: ".7em"
                     }}
                >  Edit 
-                </Button> */}
+                </Button>
 
                 </FlexBox>
                 <FlexBox
@@ -145,19 +122,9 @@ export default function TweetComp({
                         fontSize: '.6em',
                         color: 'grey',
                     }}>{date}</p>
-                    
-                    {/* On click to turn on report modal */}
-                    <FlagCircleIcon 
-                    style={{
-                        color: "#f4a261",
-                        margin:"3%",
-                    }}
-                    onClick={handleOpen}>Report</FlagCircleIcon>
-                    <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
-                    <ReportModal postid={id} handleNext={handleModalReport} handleClose={handleClose}  on={open}></ReportModal>
                 </FlexBox>
             </FlexBox>
-            {/* <p class = 'pbox'
+            <p class = 'pbox'
                 style={{
                     fontSize: '.8em',
                     alignSelf: 'flex-start',
@@ -167,7 +134,7 @@ export default function TweetComp({
                 <textarea
                 >{text}</textarea>
                 <button onClick={handleSaveClick}> Save </button>
-             </div> */}
+             </div>
         </FlexBox>
         
       </Grid>
