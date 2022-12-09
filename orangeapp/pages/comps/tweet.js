@@ -31,14 +31,17 @@ export default function TweetComp({
     const handleClick = () => {
           const relationship = {
             following: localStorage.getItem("currentUser"),
-            followed: {username} 
+            followed: id
           }
 
-        //current user name & user name they want to follow go to backend   
-            fetch(`http://localhost:3001/relationship?following_name=${relationship.following}&followed_name=${relationship.followed}`)
+        //current user name & user name they want to follow go to backend  
+        
+            fetch(`http://localhost:3001/relationship?following_name=${relationship.following}&followed_name=${relationship.followed}&state=${active}`)
             .then(async (res) => {
             }) 
+            console.log(active)
         setActive(!active);
+       
     }
   return (
     <FlexBox
@@ -108,7 +111,7 @@ export default function TweetComp({
                         marginLeft: 10,
                         fontSize: ".7em"
                     }}
-                >{ active ? "Follow" : "Unfollow" }</Button>
+                >{ active ? "Unfollow" : "Follow" }</Button>
     
                 </FlexBox>
                 <FlexBox

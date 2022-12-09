@@ -6,6 +6,11 @@ import FollowAvatarComp from './followavatar'
 export default function FollowBoxComp({
     title = 'Followers'
 }) {
+
+    
+
+
+    
   return (
     <FlexBox dir="column"
         style={{
@@ -26,7 +31,8 @@ export default function FollowBoxComp({
             justifyContent: 'flex-start',
             flexWrap: 'wrap'
         }}>
-                <FollowAvatarComp></FollowAvatarComp>
+                <FollowAvatarComp
+                username = "something"/>
                 <FollowAvatarComp></FollowAvatarComp>
         </FlexBox>
   </FlexBox>
