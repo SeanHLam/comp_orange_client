@@ -1,6 +1,5 @@
 import { BackGround, Wrapper, FlexBox } from "../styles/globals";
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import HeaderComp from "./comps/header";
@@ -15,6 +14,21 @@ import { Button } from "@mui/material";
 // Basic dashboard structure - to be updated
 export default function Home() {
  
+  const [numOfPosts, setNumOfPosts] = useState(0)
+
+  useEffect(()=>{
+    // get current posts number from backend
+    fetch('http://localhost:3001/posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      console.log(data.data.length)
+      setNumOfPosts(data.data.length)
+    });
+    return () => {
+      };
+  }, []);
+
+
 
  return (
   <BackGround>
@@ -25,7 +39,11 @@ export default function Home() {
        <Grid item xs={12}>
          <FlexBox>
 {/* Header containing logo, profile and some buttons*/}
-            <HeaderComp></HeaderComp>
+            <HeaderComp 
+              username={localStorage.getItem("currentUser")}
+              userhandle={'@'+localStorage.getItem("currentUser")}
+              numofspritz={numOfPosts}
+            ></HeaderComp>
          </FlexBox>
        </Grid>
 

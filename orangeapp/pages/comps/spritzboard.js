@@ -3,6 +3,7 @@ import { FlexBox } from '../../styles/globals'
 import { Button } from '@mui/material'
 import TweetComp from './tweet'
 import PostComp from './post'
+import UserTweetComp from './usertweet'
 
 export default function PostDashboardComp() {
 
@@ -53,8 +54,19 @@ export default function PostDashboardComp() {
       //   console.log(data)
     })
 
-    // setPosts([post, ...posts])
-    //console.log("New Post:", text)
+    fetch('http://localhost:3001/posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      setPosts(data.data)
+    });
+  }
+
+
+  const handleDeletePost = (params) => {
+    fetch(`http://localhost:3001/delete-post?id=${params}`)
+    .then(async (res) => {
+      // alert(params)
+    })
 
     fetch('http://localhost:3001/posts')
     .then(async(res)=> {
@@ -81,6 +93,18 @@ export default function PostDashboardComp() {
             Spritz
         </h2>
   {posts.map(post =>(
+    (post.name === localStorage.getItem("currentUser") ?
+
+        <UserTweetComp
+          onDeletePost={() => handleDeletePost(post.id)} 
+          key={post.id} 
+          id={post.id} 
+          text={post.post}
+          username={post.name}
+          handle={post.handle}
+          {...post}
+          />
+        :
         <TweetComp 
           key={post.id} 
           id={post.id} 
@@ -89,6 +113,7 @@ export default function PostDashboardComp() {
           handle={post.handle}
           {...post}
           />
+    )
   ))}
   </FlexBox>
   )
