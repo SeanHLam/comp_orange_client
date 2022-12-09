@@ -27,10 +27,22 @@ export default function TweetComp({
 
     // follow button text change
     const [active, setActive] = useState(false);
+    
     const handleClick = () => {
-        setActive(!active);
-    }
+          const relationship = {
+            following: localStorage.getItem("currentUser"),
+            followed: id
+          }
 
+        //current user name & user name they want to follow go to backend  
+        
+            fetch(`http://localhost:3001/relationship?following_name=${relationship.following}&followed_name=${relationship.followed}&state=${active}`)
+            .then(async (res) => {
+            }) 
+            console.log(active)
+        setActive(!active);
+       
+    }
   return (
     <FlexBox
         class="tweet"
@@ -99,7 +111,8 @@ export default function TweetComp({
                         marginLeft: 10,
                         fontSize: ".7em"
                     }}
-                >{ active ? "Follow" : "Unfollow" }</Button>
+                >{ active ? "Unfollow" : "Follow" }</Button>
+    
                 </FlexBox>
                 <FlexBox
                      style={{
@@ -121,7 +134,7 @@ export default function TweetComp({
                     <FlagCircleIcon 
                     style={{
                         color: "#f4a261",
-                        margin:"3%",
+                        margin:"3%", 
                     }}
                     onClick={handleOpen}>Report</FlagCircleIcon>
                     <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>

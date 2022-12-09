@@ -1,4 +1,5 @@
 import { Avatar, Button, requirePropFactory } from '@mui/material';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FlexBox } from '../../styles/globals';
 // import { useState, useEffect } from "react"
@@ -10,6 +11,26 @@ export default function HeaderComp({
     userhandle = '@grumpycat',
     numofspritz = 0
 }) { 
+
+    const followInfo = {
+        follow: localStorage.getItem('currentUser'),
+        followed: {}
+     }
+
+    const [following, setFollowing] = useState('')
+
+    useEffect(()=>{
+        fetch(`http://localhost:3001/following?following=${followInfo.follow}`)
+        .then(async(res)=>{
+            const num = await res.json();
+            console.log(num.data.length)
+            
+            setFollowing(num.data.length)
+        });  
+        return () => {
+            
+        }
+    }, [])
 
     return (
 //Parent div>
@@ -91,7 +112,7 @@ export default function HeaderComp({
                         margin: '.5em'
                     }}
                 >
-                   0 Following 
+                  {following} Following 
                 </p>
                  {/* Followers Stats */}
                 <p
