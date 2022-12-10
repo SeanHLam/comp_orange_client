@@ -76,7 +76,21 @@ export default function PostDashboardComp() {
       setPosts(data.data)
     });
   }
+
+  const handleEditPost = () => {
+    fetch('http://localhost:3001/posts')
+    .then(async(res)=> {
+      const data = await res.json()
+      console.log(data)
+      setPosts(data.data)
+    });
+  }
+
   
+  
+
+ 
+
   return (
     <FlexBox dir="column"
       style={{
@@ -105,6 +119,8 @@ export default function PostDashboardComp() {
           username={post.name}
           handle={post.handle}
           {...post}
+          onUpdate={handleEditPost}
+
           />
         :
         <TweetComp 
@@ -114,6 +130,7 @@ export default function PostDashboardComp() {
           username={post.name}
           handle={post.handle}
           {...post}
+          
           />
     )
   ))}

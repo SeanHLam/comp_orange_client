@@ -5,6 +5,8 @@ import { useState, useEffect } from "react"
 import ReportModal from './resportmodal'
 import ConfirmModal from './confirmmodal'
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
+import { TextareaAutosize } from '@mui/material'
+import { RefreshOutlined } from '@mui/icons-material'
 
 export default function UserTweetComp({
     onDeletePost,
@@ -12,24 +14,31 @@ export default function UserTweetComp({
     text,
     username,
     handle,
-    date
+    date,
+    vis=false,
+    onUpdate =() => {}
+    //handleEditClick =() => {}
 }) {
-   
-	const handleEditClick = ()=>{
-        let parent = event.target.closest('.tweet');
-        let textbox = parent.querySelector('.textbox');
-        textbox.classList.toggle('hidden')
-		console.log('edit the tweet')
-    }
 
-    const handleSaveClick = ()=>{
-        let parent = event.target.closest('.tweet');
-        let textbox = parent.querySelector('.textbox');
-        let paragraph = parent.querySelector('.pbox');
-        let textarea = textbox.querySelector('textarea')
-        paragraph.innerText = textarea.value; 
-        textbox.classList.toggle('hidden')
+    const [editVis, setEditVis] = useState(false)
+    const [editText, setEditText] = useState(text)
+
+
+    const handleEditClick = ()=>{
+        setEditVis(true)
+        
        
+    }
+   
+
+    const handleSaveClick = async ()=>{
+        fetch(`http://localhost:3001/edit-post?id=${id}&text=${editText}`)
+        .then(async (res) => {
+        })
+
+        onUpdate()
+        setEditVis(false)
+        console.log(editText, id)
     }
 
     const handleDelete = () => {
@@ -144,11 +153,18 @@ export default function UserTweetComp({
                     alignSelf: 'flex-start',
                 }}
             >{text}</p>
-            <div class="textbox hidden" > 
-                <textarea
-                >{text}</textarea>
+            
+            {editVis &&
+             <div> 
+                <TextareaAutosize
+                onChange={e => setEditText(e.target.value)}
+                >{editText}</TextareaAutosize>
                 <button onClick={handleSaveClick}> Save </button>
-             </div>
+            </div>
+            }
+    
+        
+        
         </FlexBox>
         
       </Grid>
