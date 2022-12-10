@@ -84,8 +84,8 @@ export default function Login({ }) {
     return (
         <div>
             <FormCont onSubmit={handlePage} method="post">
-                <h2>Sign In/Register</h2>
-                <input
+                <h2>Sign In to your account</h2>
+                <Inputcont
                     type="text"
                     value={loginUser}
                     onChange={handleUser}
@@ -93,7 +93,7 @@ export default function Login({ }) {
                     name="user"
                     className='input'
                     placeholder="Username..." />
-                <input
+                <Inputcont
                     type="password"
                     value={loginPassword}
                     onChange={handlePass}
@@ -104,11 +104,13 @@ export default function Login({ }) {
                 <SubmitButton onClick={() => {
                     handleLogin()
                 }}
-                    type="submit">Submit</SubmitButton>
+                    type="submit">Sign In</SubmitButton>
             </FormCont>
+                <Spacer></Spacer>
             <div>
-                <h2>New Account?</h2>
+                
                 <FormCont method='post'>
+                <h2>New Account?</h2>
                     <Inputcont
                         type="text"
                         value={newUser}
@@ -128,7 +130,7 @@ export default function Login({ }) {
                     <SubmitButton onClick={() => {
                         HandleNewUser()
                     }}
-                        type="submit">Submit</SubmitButton>
+                        type="submit">Sign up</SubmitButton>
                 </FormCont>
             </div>
         </div>
@@ -143,18 +145,31 @@ flex-direction: column;
 justify-content:center;
 align-items:center;
 align-content:center;
-width: 35%;
-margin: 1%;
+text-align: center;
+font-size: 25px;
+color: #F4A261;
+
 `
 const SubmitButton = styled.button`
-width: 100px;
+width: 120px;
 height: 40px;
 font-size: 16px;
-margin: 30px;
+margin: 40px;
+border-radius: 8px;
+font-color: grey;
+background-color: #F4A261;
 `
 
 const Inputcont = styled.input `
-width: 200px;
-height: 30px;
-margin: 10px;
+width: 320px;
+height: 38px;
+margin: 12px;
+border-radius: 8px;
+background-color: white;
+color: grey;
+`
+
+const Spacer = styled.div `
+margin: 50px;
+
 `
