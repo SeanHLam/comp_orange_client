@@ -15,7 +15,8 @@ import { Button } from "@mui/material";
 export default function Home() {
  
   const [numOfPosts, setNumOfPosts] = useState(0)
-
+  const [currUser, setcurrUser] = useState("")
+ 
   useEffect(()=>{
     // get current posts number from backend
     fetch('http://localhost:3001/posts')
@@ -24,6 +25,7 @@ export default function Home() {
       console.log(data.data.length)
       setNumOfPosts(data.data.length)
     });
+    setcurrUser(typeof window !== 'undefined' ? localStorage.getItem("currentUser") : "")
     return () => {
       };
   }, []);
@@ -40,8 +42,8 @@ export default function Home() {
          <FlexBox>
 {/* Header containing logo, profile and some buttons*/}
             <HeaderComp 
-              username={localStorage.getItem("currentUser")}
-              userhandle={'@'+localStorage.getItem("currentUser")}
+              username={currUser}
+              userhandle={'@'+ currUser}
               numofspritz={numOfPosts}
             ></HeaderComp>
          </FlexBox>

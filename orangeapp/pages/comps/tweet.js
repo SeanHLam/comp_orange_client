@@ -129,6 +129,8 @@ export default function TweetComp({
                         fontSize: '.6em',
                         color: 'grey',
                     }}>{date}</p>
+
+                    
                     
                     {/* On click to turn on report modal */}
                     <FlagCircleIcon 
@@ -140,9 +142,15 @@ export default function TweetComp({
                     <ConfirmModal handleClose={confirmClose} on={conOpen}></ConfirmModal>
                     <ReportModal postid={id} handleNext={handleModalReport} handleClose={handleClose}  on={open}></ReportModal>
                 </FlexBox>
+   
             </FlexBox>
         </FlexBox>
-        
+        <p class = 'pbox'
+                style={{
+                    fontSize: '.8em',
+                    alignSelf: 'flex-start',
+                }}
+            >{text}</p>
       </Grid>
       
     </FlexBox>

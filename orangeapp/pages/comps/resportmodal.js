@@ -47,6 +47,7 @@ const updateBody = (e) => {
     fetch(`http://localhost:3001/send-report?report=${reportTxt}&postid=${postid}`)
         .then(async (res) => {
         })
+    console.log(postid)
     handleNext()
   }
 
