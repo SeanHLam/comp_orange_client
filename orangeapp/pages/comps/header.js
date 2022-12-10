@@ -13,7 +13,7 @@ export default function HeaderComp({
 }) { 
 
     const followInfo = {
-        follow: localStorage.getItem('currentUser'),
+        follow: typeof window !== 'undefined' ? localStorage.getItem('currentUser') : "",
         followed: {}
      }
 

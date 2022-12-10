@@ -24,6 +24,7 @@ export default function PostDashboardComp() {
       date: "Mon Nov 21 2022"
     }
   ])
+  const [user, setUser] = useState(typeof window !== 'undefined' ? localStorage.getItem("currentUser") : "")
 
 
   useEffect(()=>{
@@ -71,6 +72,7 @@ export default function PostDashboardComp() {
     fetch('http://localhost:3001/posts')
     .then(async(res)=> {
       const data = await res.json()
+      console.log(data)
       setPosts(data.data)
     });
   }
@@ -93,7 +95,7 @@ export default function PostDashboardComp() {
             Spritz
         </h2>
   {posts.map(post =>(
-    (post.name === localStorage.getItem("currentUser") ?
+    (post.name === user ?
 
         <UserTweetComp
           onDeletePost={() => handleDeletePost(post.id)} 
